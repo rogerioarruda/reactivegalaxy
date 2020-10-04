@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import software.amazon.awssdk.auth.credentials.AwsCredentials;
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
+import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
 
@@ -28,7 +29,7 @@ public class DynamoDBConfig {
 
 	@Bean
 	public DynamoDbAsyncClient getDynamoDbAsyncClient() {
-		return DynamoDbAsyncClient.builder().credentialsProvider(amazonAWSCredentials())
+		return DynamoDbAsyncClient.builder().credentialsProvider(ProfileCredentialsProvider.create("default"))
 				.endpointOverride(URI.create(dynamoDbEndPointUrl)).build();
 	}
 

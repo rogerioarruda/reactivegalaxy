@@ -7,7 +7,7 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbParti
 @DynamoDbBean
 public class Planet {
 	
-	private Long id;
+	private String id;
 	
 	private String name;
 	
@@ -16,25 +16,14 @@ public class Planet {
 	private String terrain;
 	
 	private Integer qtFilms;
-
-	public Planet() {
 		
-	}
-	public Planet(String name, String climate, String terrain, Integer qtFilms) {
-		super();
-		this.name = name;
-		this.climate = climate;
-		this.terrain = terrain;
-		this.qtFilms = qtFilms;
-	}
-	
     @DynamoDbPartitionKey
     @DynamoDbAttribute("id")
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

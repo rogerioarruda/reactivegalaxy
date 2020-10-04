@@ -27,7 +27,7 @@ public class PlanetRepository {
         return customerDynamoDbAsyncTable.putItem(planet);
     }
 
-    public CompletableFuture<Planet> getPlanetById(Long id) {
+    public CompletableFuture<Planet> getPlanetById(String id) {
         return customerDynamoDbAsyncTable.getItem(getKeyBuild(id));
     }
 
@@ -35,7 +35,7 @@ public class PlanetRepository {
         return customerDynamoDbAsyncTable.updateItem(planet);
     }
 
-    public CompletableFuture<Planet> deletePlanetById(Long id) {
+    public CompletableFuture<Planet> deletePlanetById(String id) {
         return customerDynamoDbAsyncTable.deleteItem(getKeyBuild(id));
     }
 
@@ -43,7 +43,7 @@ public class PlanetRepository {
         return customerDynamoDbAsyncTable.scan();
     }
 
-    private Key getKeyBuild(Long id) {
+    private Key getKeyBuild(String id) {
         return Key.builder().partitionValue(id).build();
     }
 
