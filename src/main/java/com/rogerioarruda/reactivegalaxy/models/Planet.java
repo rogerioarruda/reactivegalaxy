@@ -17,7 +17,19 @@ public class Planet {
 	
 	private Integer qtFilms;
 		
-    @DynamoDbPartitionKey
+	public Planet() {
+		
+	}
+	
+    public Planet(String name, String climate, String terrain, Integer qtFilms) {
+		super();
+		this.name = name;
+		this.climate = climate;
+		this.terrain = terrain;
+		this.qtFilms = qtFilms;
+	}
+
+	@DynamoDbPartitionKey
     @DynamoDbAttribute("id")
 	public String getId() {
 		return id;

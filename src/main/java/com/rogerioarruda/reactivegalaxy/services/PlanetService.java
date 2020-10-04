@@ -4,8 +4,10 @@ import java.util.concurrent.CompletableFuture;
 
 import org.springframework.stereotype.Service;
 
+import com.rogerioarruda.reactivegalaxy.dtos.SearchDTO;
 import com.rogerioarruda.reactivegalaxy.models.Planet;
 import com.rogerioarruda.reactivegalaxy.repositories.PlanetRepository;
+import com.rogerioarruda.reactivegalaxy.restclients.SwapiClient;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -15,8 +17,11 @@ public class PlanetService {
 
 	private final PlanetRepository planetRepository;
 
-    public PlanetService(PlanetRepository planetRepository) {
+    private final SwapiClient swapiClient;
+    
+    public PlanetService(PlanetRepository planetRepository, SwapiClient swapiClient) {
         this.planetRepository = planetRepository;
+        this.swapiClient = swapiClient;
     }
 
     public void savePlanet(Planet planet) {
@@ -43,4 +48,7 @@ public class PlanetService {
                 .onErrorReturn(new Planet());
     }
 
+    public Mono<SearchDTO> getAllPlanetsFromSWAPI(String search) {
+        return swapiClient.findPlanet(search);
+    }
 }
