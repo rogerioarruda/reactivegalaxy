@@ -42,12 +42,6 @@ public class PlanetController {
     return planetService.getPlanetById(id);
   }
 
- /* @GetMapping(path="/name/{name}")
-  public @ResponseBody Iterable<Planet> getByName(@PathVariable String name) {
-    return planetService.findByName(name);
-  }
-*/
-
   @GetMapping(path="/getAllFromSwapi/")
   public @ResponseBody Mono<SearchDTO> getAllFromSwapi() {
     return planetService.getAllPlanetsFromSWAPI("");
